@@ -14,7 +14,7 @@ h1{font-size:24px;margin:0 0 4px}h2{font-size:17px;margin:30px 0 2px}
 .pt:hover circle:last-of-type{r:6}
 .legend{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:13px;margin:4px 0 0}
 .legend span::before{content:'';display:inline-block;width:14px;height:3px;border-radius:2px;margin-right:6px;vertical-align:middle;background:var(--c)}
-pre{background:var(--code);padding:12px;border-radius:6px;overflow:auto;font-size:13px}
+pre{background:var(--code);padding:12px;border-radius:6px;overflow:auto;white-space:pre-wrap;font-size:13px}
 table{border-collapse:collapse;font-size:12.5px;width:100%;margin-top:6px}
 th,td{padding:4px 6px;border-bottom:1px solid var(--grid);text-align:right}
 th{color:var(--muted);font-weight:600}td:last-child,th:last-child{text-align:left}
@@ -61,7 +61,8 @@ Also met the target:
 <g class="pt"><circle cx="503.5" cy="151.7" r="12" fill="transparent"/><circle cx="503.5" cy="151.7" r="4" fill="var(--s1)" stroke="var(--surface)" stroke-width="2"/><title>1x np16 at 8 in flight: 434.59</title></g>
 <g class="pt"><circle cx="550.7" cy="97.1" r="12" fill="transparent"/><circle cx="550.7" cy="97.1" r="4" fill="var(--s1)" stroke="var(--surface)" stroke-width="2"/><title>1x np16 at 10 in flight: 662.06</title></g>
 <g class="pt"><circle cx="650.0" cy="46.0" r="12" fill="transparent"/><circle cx="650.0" cy="46.0" r="4" fill="var(--s1)" stroke="var(--surface)" stroke-width="2"/><title>1x np16 at 16 in flight: 875.01</title></g>
-<text x="660.0" y="50.0" class="lbl">1x np16</text>
+<polyline points="656.0,46.0 662.0,46.0 672.0,46.0" fill="none" stroke="var(--s1)" stroke-width="2"/>
+<text x="676.0" y="50.0" class="lbl">1x np16</text>
 <path d="M64.0,223.4 L210.5,225.4 L357.0,197.9 L503.5,185.8 L550.7,159.5 L650.0,146.6" fill="none" stroke="var(--s2)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
 <g class="pt"><circle cx="64.0" cy="223.4" r="12" fill="transparent"/><circle cx="64.0" cy="223.4" r="4" fill="var(--s2)" stroke="var(--surface)" stroke-width="2"/><title>2x np16 at 1 in flight: 135.70</title></g>
 <g class="pt"><circle cx="210.5" cy="225.4" r="12" fill="transparent"/><circle cx="210.5" cy="225.4" r="4" fill="var(--s2)" stroke="var(--surface)" stroke-width="2"/><title>2x np16 at 2 in flight: 127.70</title></g>
@@ -69,7 +70,8 @@ Also met the target:
 <g class="pt"><circle cx="503.5" cy="185.8" r="12" fill="transparent"/><circle cx="503.5" cy="185.8" r="4" fill="var(--s2)" stroke="var(--surface)" stroke-width="2"/><title>2x np16 at 8 in flight: 292.36</title></g>
 <g class="pt"><circle cx="550.7" cy="159.5" r="12" fill="transparent"/><circle cx="550.7" cy="159.5" r="4" fill="var(--s2)" stroke="var(--surface)" stroke-width="2"/><title>2x np16 at 10 in flight: 401.91</title></g>
 <g class="pt"><circle cx="650.0" cy="146.6" r="12" fill="transparent"/><circle cx="650.0" cy="146.6" r="4" fill="var(--s2)" stroke="var(--surface)" stroke-width="2"/><title>2x np16 at 16 in flight: 455.83</title></g>
-<text x="660.0" y="150.6" class="lbl">2x np16</text>
+<polyline points="656.0,146.6 662.0,146.6 672.0,146.6" fill="none" stroke="var(--s2)" stroke-width="2"/>
+<text x="676.0" y="150.6" class="lbl">2x np16</text>
 <path d="M64.0,223.5 L210.5,225.3 L357.0,197.9 L503.5,171.5 L550.7,158.9 L650.0,146.8" fill="none" stroke="var(--s3)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
 <g class="pt"><circle cx="64.0" cy="223.5" r="12" fill="transparent"/><circle cx="64.0" cy="223.5" r="4" fill="var(--s3)" stroke="var(--surface)" stroke-width="2"/><title>2x np8 at 1 in flight: 135.40</title></g>
 <g class="pt"><circle cx="210.5" cy="225.3" r="12" fill="transparent"/><circle cx="210.5" cy="225.3" r="4" fill="var(--s3)" stroke="var(--surface)" stroke-width="2"/><title>2x np8 at 2 in flight: 127.71</title></g>
@@ -77,7 +79,8 @@ Also met the target:
 <g class="pt"><circle cx="503.5" cy="171.5" r="12" fill="transparent"/><circle cx="503.5" cy="171.5" r="4" fill="var(--s3)" stroke="var(--surface)" stroke-width="2"/><title>2x np8 at 8 in flight: 352.08</title></g>
 <g class="pt"><circle cx="550.7" cy="158.9" r="12" fill="transparent"/><circle cx="550.7" cy="158.9" r="4" fill="var(--s3)" stroke="var(--surface)" stroke-width="2"/><title>2x np8 at 10 in flight: 404.42</title></g>
 <g class="pt"><circle cx="650.0" cy="146.8" r="12" fill="transparent"/><circle cx="650.0" cy="146.8" r="4" fill="var(--s3)" stroke="var(--surface)" stroke-width="2"/><title>2x np8 at 16 in flight: 455.08</title></g>
-<text x="660.0" y="163.6" class="lbl">2x np8</text>
+<polyline points="656.0,146.8 662.0,159.6 672.0,159.6" fill="none" stroke="var(--s3)" stroke-width="2"/>
+<text x="676.0" y="163.6" class="lbl">2x np8</text>
 <path d="M64.0,223.0 L210.5,197.7 L357.0,173.1 L503.5,151.5 L550.7,158.4 L650.0,151.6" fill="none" stroke="var(--s4)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
 <g class="pt"><circle cx="64.0" cy="223.0" r="12" fill="transparent"/><circle cx="64.0" cy="223.0" r="4" fill="var(--s4)" stroke="var(--surface)" stroke-width="2"/><title>1x np8 at 1 in flight: 137.32</title></g>
 <g class="pt"><circle cx="210.5" cy="197.7" r="12" fill="transparent"/><circle cx="210.5" cy="197.7" r="4" fill="var(--s4)" stroke="var(--surface)" stroke-width="2"/><title>1x np8 at 2 in flight: 242.75</title></g>
@@ -85,7 +88,8 @@ Also met the target:
 <g class="pt"><circle cx="503.5" cy="151.5" r="12" fill="transparent"/><circle cx="503.5" cy="151.5" r="4" fill="var(--s4)" stroke="var(--surface)" stroke-width="2"/><title>1x np8 at 8 in flight: 435.32</title></g>
 <g class="pt"><circle cx="550.7" cy="158.4" r="12" fill="transparent"/><circle cx="550.7" cy="158.4" r="4" fill="var(--s4)" stroke="var(--surface)" stroke-width="2"/><title>1x np8 at 10 in flight: 406.67</title></g>
 <g class="pt"><circle cx="650.0" cy="151.6" r="12" fill="transparent"/><circle cx="650.0" cy="151.6" r="4" fill="var(--s4)" stroke="var(--surface)" stroke-width="2"/><title>1x np8 at 16 in flight: 434.94</title></g>
-<text x="660.0" y="176.6" class="lbl">1x np8</text>
+<polyline points="656.0,151.6 662.0,172.6 672.0,172.6" fill="none" stroke="var(--s4)" stroke-width="2"/>
+<text x="676.0" y="176.6" class="lbl">1x np8</text>
 <path d="M64.0,223.6 L210.5,225.3 L357.0,198.0 L503.5,171.4 L550.7,179.6 L650.0,171.6" fill="none" stroke="var(--s5)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
 <g class="pt"><circle cx="64.0" cy="223.6" r="12" fill="transparent"/><circle cx="64.0" cy="223.6" r="4" fill="var(--s5)" stroke="var(--surface)" stroke-width="2"/><title>2x np4 at 1 in flight: 134.92</title></g>
 <g class="pt"><circle cx="210.5" cy="225.3" r="12" fill="transparent"/><circle cx="210.5" cy="225.3" r="4" fill="var(--s5)" stroke="var(--surface)" stroke-width="2"/><title>2x np4 at 2 in flight: 127.88</title></g>
@@ -93,7 +97,8 @@ Also met the target:
 <g class="pt"><circle cx="503.5" cy="171.4" r="12" fill="transparent"/><circle cx="503.5" cy="171.4" r="4" fill="var(--s5)" stroke="var(--surface)" stroke-width="2"/><title>2x np4 at 8 in flight: 352.42</title></g>
 <g class="pt"><circle cx="550.7" cy="179.6" r="12" fill="transparent"/><circle cx="550.7" cy="179.6" r="4" fill="var(--s5)" stroke="var(--surface)" stroke-width="2"/><title>2x np4 at 10 in flight: 318.25</title></g>
 <g class="pt"><circle cx="650.0" cy="171.6" r="12" fill="transparent"/><circle cx="650.0" cy="171.6" r="4" fill="var(--s5)" stroke="var(--surface)" stroke-width="2"/><title>2x np4 at 16 in flight: 351.83</title></g>
-<text x="660.0" y="189.6" class="lbl">2x np4</text>
+<polyline points="656.0,171.6 662.0,185.6 672.0,185.6" fill="none" stroke="var(--s5)" stroke-width="2"/>
+<text x="676.0" y="189.6" class="lbl">2x np4</text>
 <path d="M64.0,223.1 L210.5,197.6 L357.0,172.7 L503.5,172.9 L550.7,172.8 L650.0,173.2" fill="none" stroke="var(--s6)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
 <g class="pt"><circle cx="64.0" cy="223.1" r="12" fill="transparent"/><circle cx="64.0" cy="223.1" r="4" fill="var(--s6)" stroke="var(--surface)" stroke-width="2"/><title>1x np4 at 1 in flight: 137.03</title></g>
 <g class="pt"><circle cx="210.5" cy="197.6" r="12" fill="transparent"/><circle cx="210.5" cy="197.6" r="4" fill="var(--s6)" stroke="var(--surface)" stroke-width="2"/><title>1x np4 at 2 in flight: 243.28</title></g>
@@ -101,7 +106,8 @@ Also met the target:
 <g class="pt"><circle cx="503.5" cy="172.9" r="12" fill="transparent"/><circle cx="503.5" cy="172.9" r="4" fill="var(--s6)" stroke="var(--surface)" stroke-width="2"/><title>1x np4 at 8 in flight: 346.32</title></g>
 <g class="pt"><circle cx="550.7" cy="172.8" r="12" fill="transparent"/><circle cx="550.7" cy="172.8" r="4" fill="var(--s6)" stroke="var(--surface)" stroke-width="2"/><title>1x np4 at 10 in flight: 346.76</title></g>
 <g class="pt"><circle cx="650.0" cy="173.2" r="12" fill="transparent"/><circle cx="650.0" cy="173.2" r="4" fill="var(--s6)" stroke="var(--surface)" stroke-width="2"/><title>1x np4 at 16 in flight: 344.83</title></g>
-<text x="660.0" y="202.6" class="lbl">1x np4</text>
+<polyline points="656.0,173.2 662.0,198.6 672.0,198.6" fill="none" stroke="var(--s6)" stroke-width="2"/>
+<text x="676.0" y="202.6" class="lbl">1x np4</text>
 <path d="M64.0,224.1 L210.5,223.8 L357.0,223.7 L503.5,223.8 L550.7,223.9 L650.0,222.6" fill="none" stroke="var(--s7)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
 <g class="pt"><circle cx="64.0" cy="224.1" r="12" fill="transparent"/><circle cx="64.0" cy="224.1" r="4" fill="var(--s7)" stroke="var(--surface)" stroke-width="2"/><title>1x np1 at 1 in flight: 133.09</title></g>
 <g class="pt"><circle cx="210.5" cy="223.8" r="12" fill="transparent"/><circle cx="210.5" cy="223.8" r="4" fill="var(--s7)" stroke="var(--surface)" stroke-width="2"/><title>1x np1 at 2 in flight: 134.35</title></g>
@@ -109,7 +115,8 @@ Also met the target:
 <g class="pt"><circle cx="503.5" cy="223.8" r="12" fill="transparent"/><circle cx="503.5" cy="223.8" r="4" fill="var(--s7)" stroke="var(--surface)" stroke-width="2"/><title>1x np1 at 8 in flight: 134.31</title></g>
 <g class="pt"><circle cx="550.7" cy="223.9" r="12" fill="transparent"/><circle cx="550.7" cy="223.9" r="4" fill="var(--s7)" stroke="var(--surface)" stroke-width="2"/><title>1x np1 at 10 in flight: 133.75</title></g>
 <g class="pt"><circle cx="650.0" cy="222.6" r="12" fill="transparent"/><circle cx="650.0" cy="222.6" r="4" fill="var(--s7)" stroke="var(--surface)" stroke-width="2"/><title>1x np1 at 16 in flight: 139.20</title></g>
-<text x="660.0" y="226.6" class="lbl">1x np1</text>
+<polyline points="656.0,222.6 662.0,222.6 672.0,222.6" fill="none" stroke="var(--s7)" stroke-width="2"/>
+<text x="676.0" y="226.6" class="lbl">1x np1</text>
 <path d="M64.0,223.2 L210.5,225.4 L357.0,225.2 L503.5,225.0 L550.7,225.0 L650.0,225.0" fill="none" stroke="var(--s8)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
 <g class="pt"><circle cx="64.0" cy="223.2" r="12" fill="transparent"/><circle cx="64.0" cy="223.2" r="4" fill="var(--s8)" stroke="var(--surface)" stroke-width="2"/><title>2x np1 at 1 in flight: 136.46</title></g>
 <g class="pt"><circle cx="210.5" cy="225.4" r="12" fill="transparent"/><circle cx="210.5" cy="225.4" r="4" fill="var(--s8)" stroke="var(--surface)" stroke-width="2"/><title>2x np1 at 2 in flight: 127.43</title></g>
@@ -117,7 +124,8 @@ Also met the target:
 <g class="pt"><circle cx="503.5" cy="225.0" r="12" fill="transparent"/><circle cx="503.5" cy="225.0" r="4" fill="var(--s8)" stroke="var(--surface)" stroke-width="2"/><title>2x np1 at 8 in flight: 129.01</title></g>
 <g class="pt"><circle cx="550.7" cy="225.0" r="12" fill="transparent"/><circle cx="550.7" cy="225.0" r="4" fill="var(--s8)" stroke="var(--surface)" stroke-width="2"/><title>2x np1 at 10 in flight: 129.07</title></g>
 <g class="pt"><circle cx="650.0" cy="225.0" r="12" fill="transparent"/><circle cx="650.0" cy="225.0" r="4" fill="var(--s8)" stroke="var(--surface)" stroke-width="2"/><title>2x np1 at 16 in flight: 129.22</title></g>
-<text x="660.0" y="239.6" class="lbl">2x np1</text>
+<polyline points="656.0,225.0 662.0,235.6 672.0,235.6" fill="none" stroke="var(--s8)" stroke-width="2"/>
+<text x="676.0" y="239.6" class="lbl">2x np1</text>
 </svg>
 <div class="legend"><span style="--c:var(--s1)">1x np16</span><span style="--c:var(--s2)">2x np16</span><span style="--c:var(--s3)">2x np8</span><span style="--c:var(--s4)">1x np8</span><span style="--c:var(--s5)">2x np4</span><span style="--c:var(--s6)">1x np4</span><span style="--c:var(--s7)">1x np1</span><span style="--c:var(--s8)">2x np1</span></div>
 <h2>What the slowest 10% of people see</h2><p class="unit">tokens/s per request, 10th percentile</p>
@@ -147,7 +155,8 @@ Also met the target:
 <g class="pt"><circle cx="503.5" cy="191.0" r="12" fill="transparent"/><circle cx="503.5" cy="191.0" r="4" fill="var(--s1)" stroke="var(--surface)" stroke-width="2"/><title>1x np16 at 8 in flight: 54.15</title></g>
 <g class="pt"><circle cx="550.7" cy="176.9" r="12" fill="transparent"/><circle cx="550.7" cy="176.9" r="4" fill="var(--s1)" stroke="var(--surface)" stroke-width="2"/><title>1x np16 at 10 in flight: 65.92</title></g>
 <g class="pt"><circle cx="650.0" cy="190.5" r="12" fill="transparent"/><circle cx="650.0" cy="190.5" r="4" fill="var(--s1)" stroke="var(--surface)" stroke-width="2"/><title>1x np16 at 16 in flight: 54.59</title></g>
-<text x="660.0" y="194.5" class="lbl">1x np16</text>
+<polyline points="656.0,190.5 662.0,165.0 672.0,165.0" fill="none" stroke="var(--s1)" stroke-width="2"/>
+<text x="676.0" y="169.0" class="lbl">1x np16</text>
 <path d="M64.0,95.0 L210.5,179.9 L357.0,184.0 L503.5,215.4 L550.7,207.9 L650.0,221.9" fill="none" stroke="var(--s2)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
 <g class="pt"><circle cx="64.0" cy="95.0" r="12" fill="transparent"/><circle cx="64.0" cy="95.0" r="4" fill="var(--s2)" stroke="var(--surface)" stroke-width="2"/><title>2x np16 at 1 in flight: 134.19</title></g>
 <g class="pt"><circle cx="210.5" cy="179.9" r="12" fill="transparent"/><circle cx="210.5" cy="179.9" r="4" fill="var(--s2)" stroke="var(--surface)" stroke-width="2"/><title>2x np16 at 2 in flight: 63.40</title></g>
@@ -155,7 +164,8 @@ Also met the target:
 <g class="pt"><circle cx="503.5" cy="215.4" r="12" fill="transparent"/><circle cx="503.5" cy="215.4" r="4" fill="var(--s2)" stroke="var(--surface)" stroke-width="2"/><title>2x np16 at 8 in flight: 33.80</title></g>
 <g class="pt"><circle cx="550.7" cy="207.9" r="12" fill="transparent"/><circle cx="550.7" cy="207.9" r="4" fill="var(--s2)" stroke="var(--surface)" stroke-width="2"/><title>2x np16 at 10 in flight: 40.12</title></g>
 <g class="pt"><circle cx="650.0" cy="221.9" r="12" fill="transparent"/><circle cx="650.0" cy="221.9" r="4" fill="var(--s2)" stroke="var(--surface)" stroke-width="2"/><title>2x np16 at 16 in flight: 28.44</title></g>
-<text x="660.0" y="225.9" class="lbl">2x np16</text>
+<polyline points="656.0,221.9 662.0,178.0 672.0,178.0" fill="none" stroke="var(--s2)" stroke-width="2"/>
+<text x="676.0" y="182.0" class="lbl">2x np16</text>
 <path d="M64.0,94.8 L210.5,180.1 L357.0,184.1 L503.5,203.4 L550.7,207.5 L650.0,221.9" fill="none" stroke="var(--s3)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
 <g class="pt"><circle cx="64.0" cy="94.8" r="12" fill="transparent"/><circle cx="64.0" cy="94.8" r="4" fill="var(--s3)" stroke="var(--surface)" stroke-width="2"/><title>2x np8 at 1 in flight: 134.34</title></g>
 <g class="pt"><circle cx="210.5" cy="180.1" r="12" fill="transparent"/><circle cx="210.5" cy="180.1" r="4" fill="var(--s3)" stroke="var(--surface)" stroke-width="2"/><title>2x np8 at 2 in flight: 63.29</title></g>
@@ -163,7 +173,8 @@ Also met the target:
 <g class="pt"><circle cx="503.5" cy="203.4" r="12" fill="transparent"/><circle cx="503.5" cy="203.4" r="4" fill="var(--s3)" stroke="var(--surface)" stroke-width="2"/><title>2x np8 at 8 in flight: 43.85</title></g>
 <g class="pt"><circle cx="550.7" cy="207.5" r="12" fill="transparent"/><circle cx="550.7" cy="207.5" r="4" fill="var(--s3)" stroke="var(--surface)" stroke-width="2"/><title>2x np8 at 10 in flight: 40.43</title></g>
 <g class="pt"><circle cx="650.0" cy="221.9" r="12" fill="transparent"/><circle cx="650.0" cy="221.9" r="4" fill="var(--s3)" stroke="var(--surface)" stroke-width="2"/><title>2x np8 at 16 in flight: 28.42</title></g>
-<text x="660.0" y="238.9" class="lbl">2x np8</text>
+<polyline points="656.0,221.9 662.0,191.0 672.0,191.0" fill="none" stroke="var(--s3)" stroke-width="2"/>
+<text x="676.0" y="195.0" class="lbl">2x np8</text>
 <path d="M64.0,93.1 L210.5,112.4 L357.0,153.3 L503.5,190.8 L550.7,217.3 L650.0,223.4" fill="none" stroke="var(--s4)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
 <g class="pt"><circle cx="64.0" cy="93.1" r="12" fill="transparent"/><circle cx="64.0" cy="93.1" r="4" fill="var(--s4)" stroke="var(--surface)" stroke-width="2"/><title>1x np8 at 1 in flight: 135.76</title></g>
 <g class="pt"><circle cx="210.5" cy="112.4" r="12" fill="transparent"/><circle cx="210.5" cy="112.4" r="4" fill="var(--s4)" stroke="var(--surface)" stroke-width="2"/><title>1x np8 at 2 in flight: 119.65</title></g>
@@ -171,7 +182,8 @@ Also met the target:
 <g class="pt"><circle cx="503.5" cy="190.8" r="12" fill="transparent"/><circle cx="503.5" cy="190.8" r="4" fill="var(--s4)" stroke="var(--surface)" stroke-width="2"/><title>1x np8 at 8 in flight: 54.31</title></g>
 <g class="pt"><circle cx="550.7" cy="217.3" r="12" fill="transparent"/><circle cx="550.7" cy="217.3" r="4" fill="var(--s4)" stroke="var(--surface)" stroke-width="2"/><title>1x np8 at 10 in flight: 32.22</title></g>
 <g class="pt"><circle cx="650.0" cy="223.4" r="12" fill="transparent"/><circle cx="650.0" cy="223.4" r="4" fill="var(--s4)" stroke="var(--surface)" stroke-width="2"/><title>1x np8 at 16 in flight: 27.20</title></g>
-<text x="660.0" y="251.9" class="lbl">1x np8</text>
+<polyline points="656.0,223.4 662.0,204.0 672.0,204.0" fill="none" stroke="var(--s4)" stroke-width="2"/>
+<text x="676.0" y="208.0" class="lbl">1x np8</text>
 <path d="M64.0,96.5 L210.5,180.0 L357.0,184.0 L503.5,203.3 L550.7,226.4 L650.0,229.6" fill="none" stroke="var(--s5)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
 <g class="pt"><circle cx="64.0" cy="96.5" r="12" fill="transparent"/><circle cx="64.0" cy="96.5" r="4" fill="var(--s5)" stroke="var(--surface)" stroke-width="2"/><title>2x np4 at 1 in flight: 132.89</title></g>
 <g class="pt"><circle cx="210.5" cy="180.0" r="12" fill="transparent"/><circle cx="210.5" cy="180.0" r="4" fill="var(--s5)" stroke="var(--surface)" stroke-width="2"/><title>2x np4 at 2 in flight: 63.37</title></g>
@@ -179,7 +191,8 @@ Also met the target:
 <g class="pt"><circle cx="503.5" cy="203.3" r="12" fill="transparent"/><circle cx="503.5" cy="203.3" r="4" fill="var(--s5)" stroke="var(--surface)" stroke-width="2"/><title>2x np4 at 8 in flight: 43.88</title></g>
 <g class="pt"><circle cx="550.7" cy="226.4" r="12" fill="transparent"/><circle cx="550.7" cy="226.4" r="4" fill="var(--s5)" stroke="var(--surface)" stroke-width="2"/><title>2x np4 at 10 in flight: 24.69</title></g>
 <g class="pt"><circle cx="650.0" cy="229.6" r="12" fill="transparent"/><circle cx="650.0" cy="229.6" r="4" fill="var(--s5)" stroke="var(--surface)" stroke-width="2"/><title>2x np4 at 16 in flight: 22.00</title></g>
-<text x="660.0" y="264.9" class="lbl">2x np4</text>
+<polyline points="656.0,229.6 662.0,217.0 672.0,217.0" fill="none" stroke="var(--s5)" stroke-width="2"/>
+<text x="676.0" y="221.0" class="lbl">2x np4</text>
 <path d="M64.0,93.6 L210.5,111.3 L357.0,152.5 L503.5,204.2 L550.7,221.2 L650.0,230.1" fill="none" stroke="var(--s6)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
 <g class="pt"><circle cx="64.0" cy="93.6" r="12" fill="transparent"/><circle cx="64.0" cy="93.6" r="4" fill="var(--s6)" stroke="var(--surface)" stroke-width="2"/><title>1x np4 at 1 in flight: 135.35</title></g>
 <g class="pt"><circle cx="210.5" cy="111.3" r="12" fill="transparent"/><circle cx="210.5" cy="111.3" r="4" fill="var(--s6)" stroke="var(--surface)" stroke-width="2"/><title>1x np4 at 2 in flight: 120.62</title></g>
@@ -187,7 +200,8 @@ Also met the target:
 <g class="pt"><circle cx="503.5" cy="204.2" r="12" fill="transparent"/><circle cx="503.5" cy="204.2" r="4" fill="var(--s6)" stroke="var(--surface)" stroke-width="2"/><title>1x np4 at 8 in flight: 43.15</title></g>
 <g class="pt"><circle cx="550.7" cy="221.2" r="12" fill="transparent"/><circle cx="550.7" cy="221.2" r="4" fill="var(--s6)" stroke="var(--surface)" stroke-width="2"/><title>1x np4 at 10 in flight: 28.99</title></g>
 <g class="pt"><circle cx="650.0" cy="230.1" r="12" fill="transparent"/><circle cx="650.0" cy="230.1" r="4" fill="var(--s6)" stroke="var(--surface)" stroke-width="2"/><title>1x np4 at 16 in flight: 21.57</title></g>
-<text x="660.0" y="277.9" class="lbl">1x np4</text>
+<polyline points="656.0,230.1 662.0,230.0 672.0,230.0" fill="none" stroke="var(--s6)" stroke-width="2"/>
+<text x="676.0" y="234.0" class="lbl">1x np4</text>
 <path d="M64.0,98.8 L210.5,175.7 L357.0,215.8 L503.5,235.9 L550.7,240.0 L650.0,245.5" fill="none" stroke="var(--s7)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
 <g class="pt"><circle cx="64.0" cy="98.8" r="12" fill="transparent"/><circle cx="64.0" cy="98.8" r="4" fill="var(--s7)" stroke="var(--surface)" stroke-width="2"/><title>1x np1 at 1 in flight: 131.01</title></g>
 <g class="pt"><circle cx="210.5" cy="175.7" r="12" fill="transparent"/><circle cx="210.5" cy="175.7" r="4" fill="var(--s7)" stroke="var(--surface)" stroke-width="2"/><title>1x np1 at 2 in flight: 66.89</title></g>
@@ -195,7 +209,8 @@ Also met the target:
 <g class="pt"><circle cx="503.5" cy="235.9" r="12" fill="transparent"/><circle cx="503.5" cy="235.9" r="4" fill="var(--s7)" stroke="var(--surface)" stroke-width="2"/><title>1x np1 at 8 in flight: 16.75</title></g>
 <g class="pt"><circle cx="550.7" cy="240.0" r="12" fill="transparent"/><circle cx="550.7" cy="240.0" r="4" fill="var(--s7)" stroke="var(--surface)" stroke-width="2"/><title>1x np1 at 10 in flight: 13.35</title></g>
 <g class="pt"><circle cx="650.0" cy="245.5" r="12" fill="transparent"/><circle cx="650.0" cy="245.5" r="4" fill="var(--s7)" stroke="var(--surface)" stroke-width="2"/><title>1x np1 at 16 in flight: 8.72</title></g>
-<text x="660.0" y="290.9" class="lbl">1x np1</text>
+<polyline points="656.0,245.5 662.0,243.0 672.0,243.0" fill="none" stroke="var(--s7)" stroke-width="2"/>
+<text x="676.0" y="247.0" class="lbl">1x np1</text>
 <path d="M64.0,93.8 L210.5,180.1 L357.0,217.7 L503.5,236.6 L550.7,240.5 L650.0,246.3" fill="none" stroke="var(--s8)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
 <g class="pt"><circle cx="64.0" cy="93.8" r="12" fill="transparent"/><circle cx="64.0" cy="93.8" r="4" fill="var(--s8)" stroke="var(--surface)" stroke-width="2"/><title>2x np1 at 1 in flight: 135.16</title></g>
 <g class="pt"><circle cx="210.5" cy="180.1" r="12" fill="transparent"/><circle cx="210.5" cy="180.1" r="4" fill="var(--s8)" stroke="var(--surface)" stroke-width="2"/><title>2x np1 at 2 in flight: 63.26</title></g>
@@ -203,7 +218,8 @@ Also met the target:
 <g class="pt"><circle cx="503.5" cy="236.6" r="12" fill="transparent"/><circle cx="503.5" cy="236.6" r="4" fill="var(--s8)" stroke="var(--surface)" stroke-width="2"/><title>2x np1 at 8 in flight: 16.13</title></g>
 <g class="pt"><circle cx="550.7" cy="240.5" r="12" fill="transparent"/><circle cx="550.7" cy="240.5" r="4" fill="var(--s8)" stroke="var(--surface)" stroke-width="2"/><title>2x np1 at 10 in flight: 12.94</title></g>
 <g class="pt"><circle cx="650.0" cy="246.3" r="12" fill="transparent"/><circle cx="650.0" cy="246.3" r="4" fill="var(--s8)" stroke="var(--surface)" stroke-width="2"/><title>2x np1 at 16 in flight: 8.09</title></g>
-<text x="660.0" y="303.9" class="lbl">2x np1</text>
+<polyline points="656.0,246.3 662.0,256.0 672.0,256.0" fill="none" stroke="var(--s8)" stroke-width="2"/>
+<text x="676.0" y="260.0" class="lbl">2x np1</text>
 </svg>
 <div class="legend"><span style="--c:var(--s1)">1x np16</span><span style="--c:var(--s2)">2x np16</span><span style="--c:var(--s3)">2x np8</span><span style="--c:var(--s4)">1x np8</span><span style="--c:var(--s5)">2x np4</span><span style="--c:var(--s6)">1x np4</span><span style="--c:var(--s7)">1x np1</span><span style="--c:var(--s8)">2x np1</span></div>
 <h2>Energy efficiency</h2><p class="unit">tokens per joule (board power from nvidia-smi)</p>
@@ -233,7 +249,8 @@ Also met the target:
 <g class="pt"><circle cx="503.5" cy="162.7" r="12" fill="transparent"/><circle cx="503.5" cy="162.7" r="4" fill="var(--s1)" stroke="var(--surface)" stroke-width="2"/><title>1x np16 at 8 in flight: 1.94</title></g>
 <g class="pt"><circle cx="550.7" cy="98.7" r="12" fill="transparent"/><circle cx="550.7" cy="98.7" r="4" fill="var(--s1)" stroke="var(--surface)" stroke-width="2"/><title>1x np16 at 10 in flight: 3.28</title></g>
 <g class="pt"><circle cx="650.0" cy="64.6" r="12" fill="transparent"/><circle cx="650.0" cy="64.6" r="4" fill="var(--s1)" stroke="var(--surface)" stroke-width="2"/><title>1x np16 at 16 in flight: 3.99</title></g>
-<text x="660.0" y="68.6" class="lbl">1x np16</text>
+<polyline points="656.0,64.6 662.0,64.6 672.0,64.6" fill="none" stroke="var(--s1)" stroke-width="2"/>
+<text x="676.0" y="68.6" class="lbl">1x np16</text>
 <path d="M64.0,198.6 L210.5,225.9 L357.0,199.2 L503.5,200.8 L550.7,177.2 L650.0,171.9" fill="none" stroke="var(--s2)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
 <g class="pt"><circle cx="64.0" cy="198.6" r="12" fill="transparent"/><circle cx="64.0" cy="198.6" r="4" fill="var(--s2)" stroke="var(--surface)" stroke-width="2"/><title>2x np16 at 1 in flight: 1.20</title></g>
 <g class="pt"><circle cx="210.5" cy="225.9" r="12" fill="transparent"/><circle cx="210.5" cy="225.9" r="4" fill="var(--s2)" stroke="var(--surface)" stroke-width="2"/><title>2x np16 at 2 in flight: 0.63</title></g>
@@ -241,7 +258,8 @@ Also met the target:
 <g class="pt"><circle cx="503.5" cy="200.8" r="12" fill="transparent"/><circle cx="503.5" cy="200.8" r="4" fill="var(--s2)" stroke="var(--surface)" stroke-width="2"/><title>2x np16 at 8 in flight: 1.15</title></g>
 <g class="pt"><circle cx="550.7" cy="177.2" r="12" fill="transparent"/><circle cx="550.7" cy="177.2" r="4" fill="var(--s2)" stroke="var(--surface)" stroke-width="2"/><title>2x np16 at 10 in flight: 1.64</title></g>
 <g class="pt"><circle cx="650.0" cy="171.9" r="12" fill="transparent"/><circle cx="650.0" cy="171.9" r="4" fill="var(--s2)" stroke="var(--surface)" stroke-width="2"/><title>2x np16 at 16 in flight: 1.75</title></g>
-<text x="660.0" y="175.9" class="lbl">2x np16</text>
+<polyline points="656.0,171.9 662.0,171.9 672.0,171.9" fill="none" stroke="var(--s2)" stroke-width="2"/>
+<text x="676.0" y="175.9" class="lbl">2x np16</text>
 <path d="M64.0,197.9 L210.5,226.0 L357.0,205.4 L503.5,186.1 L550.7,175.6 L650.0,173.0" fill="none" stroke="var(--s3)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
 <g class="pt"><circle cx="64.0" cy="197.9" r="12" fill="transparent"/><circle cx="64.0" cy="197.9" r="4" fill="var(--s3)" stroke="var(--surface)" stroke-width="2"/><title>2x np8 at 1 in flight: 1.21</title></g>
 <g class="pt"><circle cx="210.5" cy="226.0" r="12" fill="transparent"/><circle cx="210.5" cy="226.0" r="4" fill="var(--s3)" stroke="var(--surface)" stroke-width="2"/><title>2x np8 at 2 in flight: 0.62</title></g>
@@ -249,7 +267,8 @@ Also met the target:
 <g class="pt"><circle cx="503.5" cy="186.1" r="12" fill="transparent"/><circle cx="503.5" cy="186.1" r="4" fill="var(--s3)" stroke="var(--surface)" stroke-width="2"/><title>2x np8 at 8 in flight: 1.46</title></g>
 <g class="pt"><circle cx="550.7" cy="175.6" r="12" fill="transparent"/><circle cx="550.7" cy="175.6" r="4" fill="var(--s3)" stroke="var(--surface)" stroke-width="2"/><title>2x np8 at 10 in flight: 1.68</title></g>
 <g class="pt"><circle cx="650.0" cy="173.0" r="12" fill="transparent"/><circle cx="650.0" cy="173.0" r="4" fill="var(--s3)" stroke="var(--surface)" stroke-width="2"/><title>2x np8 at 16 in flight: 1.73</title></g>
-<text x="660.0" y="188.9" class="lbl">2x np8</text>
+<polyline points="656.0,173.0 662.0,184.9 672.0,184.9" fill="none" stroke="var(--s3)" stroke-width="2"/>
+<text x="676.0" y="188.9" class="lbl">2x np8</text>
 <path d="M64.0,190.9 L210.5,167.8 L357.0,172.4 L503.5,165.4 L550.7,173.3 L650.0,176.1" fill="none" stroke="var(--s4)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
 <g class="pt"><circle cx="64.0" cy="190.9" r="12" fill="transparent"/><circle cx="64.0" cy="190.9" r="4" fill="var(--s4)" stroke="var(--surface)" stroke-width="2"/><title>1x np8 at 1 in flight: 1.36</title></g>
 <g class="pt"><circle cx="210.5" cy="167.8" r="12" fill="transparent"/><circle cx="210.5" cy="167.8" r="4" fill="var(--s4)" stroke="var(--surface)" stroke-width="2"/><title>1x np8 at 2 in flight: 1.84</title></g>
@@ -257,7 +276,8 @@ Also met the target:
 <g class="pt"><circle cx="503.5" cy="165.4" r="12" fill="transparent"/><circle cx="503.5" cy="165.4" r="4" fill="var(--s4)" stroke="var(--surface)" stroke-width="2"/><title>1x np8 at 8 in flight: 1.89</title></g>
 <g class="pt"><circle cx="550.7" cy="173.3" r="12" fill="transparent"/><circle cx="550.7" cy="173.3" r="4" fill="var(--s4)" stroke="var(--surface)" stroke-width="2"/><title>1x np8 at 10 in flight: 1.72</title></g>
 <g class="pt"><circle cx="650.0" cy="176.1" r="12" fill="transparent"/><circle cx="650.0" cy="176.1" r="4" fill="var(--s4)" stroke="var(--surface)" stroke-width="2"/><title>1x np8 at 16 in flight: 1.67</title></g>
-<text x="660.0" y="201.9" class="lbl">1x np8</text>
+<polyline points="656.0,176.1 662.0,197.9 672.0,197.9" fill="none" stroke="var(--s4)" stroke-width="2"/>
+<text x="676.0" y="201.9" class="lbl">1x np8</text>
 <path d="M64.0,188.7 L210.5,228.2 L357.0,203.4 L503.5,185.5 L550.7,194.9 L650.0,193.3" fill="none" stroke="var(--s5)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
 <g class="pt"><circle cx="64.0" cy="188.7" r="12" fill="transparent"/><circle cx="64.0" cy="188.7" r="4" fill="var(--s5)" stroke="var(--surface)" stroke-width="2"/><title>2x np4 at 1 in flight: 1.40</title></g>
 <g class="pt"><circle cx="210.5" cy="228.2" r="12" fill="transparent"/><circle cx="210.5" cy="228.2" r="4" fill="var(--s5)" stroke="var(--surface)" stroke-width="2"/><title>2x np4 at 2 in flight: 0.58</title></g>
@@ -265,7 +285,8 @@ Also met the target:
 <g class="pt"><circle cx="503.5" cy="185.5" r="12" fill="transparent"/><circle cx="503.5" cy="185.5" r="4" fill="var(--s5)" stroke="var(--surface)" stroke-width="2"/><title>2x np4 at 8 in flight: 1.47</title></g>
 <g class="pt"><circle cx="550.7" cy="194.9" r="12" fill="transparent"/><circle cx="550.7" cy="194.9" r="4" fill="var(--s5)" stroke="var(--surface)" stroke-width="2"/><title>2x np4 at 10 in flight: 1.27</title></g>
 <g class="pt"><circle cx="650.0" cy="193.3" r="12" fill="transparent"/><circle cx="650.0" cy="193.3" r="4" fill="var(--s5)" stroke="var(--surface)" stroke-width="2"/><title>2x np4 at 16 in flight: 1.31</title></g>
-<text x="660.0" y="214.9" class="lbl">2x np4</text>
+<polyline points="656.0,193.3 662.0,210.9 672.0,210.9" fill="none" stroke="var(--s5)" stroke-width="2"/>
+<text x="676.0" y="214.9" class="lbl">2x np4</text>
 <path d="M64.0,199.3 L210.5,172.2 L357.0,172.7 L503.5,184.0 L550.7,189.1 L650.0,194.9" fill="none" stroke="var(--s6)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
 <g class="pt"><circle cx="64.0" cy="199.3" r="12" fill="transparent"/><circle cx="64.0" cy="199.3" r="4" fill="var(--s6)" stroke="var(--surface)" stroke-width="2"/><title>1x np4 at 1 in flight: 1.18</title></g>
 <g class="pt"><circle cx="210.5" cy="172.2" r="12" fill="transparent"/><circle cx="210.5" cy="172.2" r="4" fill="var(--s6)" stroke="var(--surface)" stroke-width="2"/><title>1x np4 at 2 in flight: 1.75</title></g>
@@ -273,7 +294,8 @@ Also met the target:
 <g class="pt"><circle cx="503.5" cy="184.0" r="12" fill="transparent"/><circle cx="503.5" cy="184.0" r="4" fill="var(--s6)" stroke="var(--surface)" stroke-width="2"/><title>1x np4 at 8 in flight: 1.50</title></g>
 <g class="pt"><circle cx="550.7" cy="189.1" r="12" fill="transparent"/><circle cx="550.7" cy="189.1" r="4" fill="var(--s6)" stroke="var(--surface)" stroke-width="2"/><title>1x np4 at 10 in flight: 1.39</title></g>
 <g class="pt"><circle cx="650.0" cy="194.9" r="12" fill="transparent"/><circle cx="650.0" cy="194.9" r="4" fill="var(--s6)" stroke="var(--surface)" stroke-width="2"/><title>1x np4 at 16 in flight: 1.27</title></g>
-<text x="660.0" y="227.9" class="lbl">1x np4</text>
+<polyline points="656.0,194.9 662.0,223.9 672.0,223.9" fill="none" stroke="var(--s6)" stroke-width="2"/>
+<text x="676.0" y="227.9" class="lbl">1x np4</text>
 <path d="M64.0,221.3 L210.5,228.1 L357.0,231.9 L503.5,232.9 L550.7,233.4 L650.0,232.8" fill="none" stroke="var(--s7)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
 <g class="pt"><circle cx="64.0" cy="221.3" r="12" fill="transparent"/><circle cx="64.0" cy="221.3" r="4" fill="var(--s7)" stroke="var(--surface)" stroke-width="2"/><title>1x np1 at 1 in flight: 0.72</title></g>
 <g class="pt"><circle cx="210.5" cy="228.1" r="12" fill="transparent"/><circle cx="210.5" cy="228.1" r="4" fill="var(--s7)" stroke="var(--surface)" stroke-width="2"/><title>1x np1 at 2 in flight: 0.58</title></g>
@@ -281,7 +303,8 @@ Also met the target:
 <g class="pt"><circle cx="503.5" cy="232.9" r="12" fill="transparent"/><circle cx="503.5" cy="232.9" r="4" fill="var(--s7)" stroke="var(--surface)" stroke-width="2"/><title>1x np1 at 8 in flight: 0.48</title></g>
 <g class="pt"><circle cx="550.7" cy="233.4" r="12" fill="transparent"/><circle cx="550.7" cy="233.4" r="4" fill="var(--s7)" stroke="var(--surface)" stroke-width="2"/><title>1x np1 at 10 in flight: 0.47</title></g>
 <g class="pt"><circle cx="650.0" cy="232.8" r="12" fill="transparent"/><circle cx="650.0" cy="232.8" r="4" fill="var(--s7)" stroke="var(--surface)" stroke-width="2"/><title>1x np1 at 16 in flight: 0.48</title></g>
-<text x="660.0" y="240.9" class="lbl">1x np1</text>
+<polyline points="656.0,232.8 662.0,236.9 672.0,236.9" fill="none" stroke="var(--s7)" stroke-width="2"/>
+<text x="676.0" y="240.9" class="lbl">1x np1</text>
 <path d="M64.0,174.2 L210.5,228.3 L357.0,232.3 L503.5,233.7 L550.7,234.2 L650.0,234.4" fill="none" stroke="var(--s8)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
 <g class="pt"><circle cx="64.0" cy="174.2" r="12" fill="transparent"/><circle cx="64.0" cy="174.2" r="4" fill="var(--s8)" stroke="var(--surface)" stroke-width="2"/><title>2x np1 at 1 in flight: 1.71</title></g>
 <g class="pt"><circle cx="210.5" cy="228.3" r="12" fill="transparent"/><circle cx="210.5" cy="228.3" r="4" fill="var(--s8)" stroke="var(--surface)" stroke-width="2"/><title>2x np1 at 2 in flight: 0.58</title></g>
@@ -289,7 +312,8 @@ Also met the target:
 <g class="pt"><circle cx="503.5" cy="233.7" r="12" fill="transparent"/><circle cx="503.5" cy="233.7" r="4" fill="var(--s8)" stroke="var(--surface)" stroke-width="2"/><title>2x np1 at 8 in flight: 0.47</title></g>
 <g class="pt"><circle cx="550.7" cy="234.2" r="12" fill="transparent"/><circle cx="550.7" cy="234.2" r="4" fill="var(--s8)" stroke="var(--surface)" stroke-width="2"/><title>2x np1 at 10 in flight: 0.45</title></g>
 <g class="pt"><circle cx="650.0" cy="234.4" r="12" fill="transparent"/><circle cx="650.0" cy="234.4" r="4" fill="var(--s8)" stroke="var(--surface)" stroke-width="2"/><title>2x np1 at 16 in flight: 0.45</title></g>
-<text x="660.0" y="253.9" class="lbl">2x np1</text>
+<polyline points="656.0,234.4 662.0,249.9 672.0,249.9" fill="none" stroke="var(--s8)" stroke-width="2"/>
+<text x="676.0" y="253.9" class="lbl">2x np1</text>
 </svg>
 <div class="legend"><span style="--c:var(--s1)">1x np16</span><span style="--c:var(--s2)">2x np16</span><span style="--c:var(--s3)">2x np8</span><span style="--c:var(--s4)">1x np8</span><span style="--c:var(--s5)">2x np4</span><span style="--c:var(--s6)">1x np4</span><span style="--c:var(--s7)">1x np1</span><span style="--c:var(--s8)">2x np1</span></div>
 <h2>All cells</h2><table><thead><tr><th>inst</th><th>np</th><th>batch</th><th>ubatch</th><th>in flight</th><th>total tok/s</th><th>per-person p50</th><th>slowest 10%</th><th>p95 wait s</th><th>avg W</th><th>tok/J</th><th>max C</th><th>errors</th><th>status</th></tr></thead><tbody>

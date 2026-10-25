@@ -82,3 +82,14 @@ def test_batch_lists_can_mix_the_server_default_with_numbers():
     assert opt_int_list("default") == [None]
     assert opt_int_list("default,512,2048") == [None, 512, 2048]
     assert opt_int_list("512,1024") == [512, 1024]
+
+
+def test_end_labels_stay_apart_and_above_the_x_axis():
+    from amagi_throughput_lab.report import Frame, label_positions
+
+    frame = Frame([1, 16], 100)
+    # Eight lines all ending near zero: the labels must not run below the axis.
+    series = [(f"s{i}", "#000", "#000", [(1, 50), (16, 1 + i * 0.1)]) for i in range(8)]
+    ys = sorted(label_positions(series, frame).values())
+    assert ys[-1] <= frame.h - frame.b
+    assert all(b - a >= 13 - 1e-9 for a, b in zip(ys, ys[1:]))

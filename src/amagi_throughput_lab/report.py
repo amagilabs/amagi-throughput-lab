@@ -107,15 +107,27 @@ def build_charts(rows):
 
 
 def label_positions(series, frame, min_gap=13):
-    """End-of-line label y positions, nudged apart so they don't overlap."""
+    """End-of-line label y positions, nudged apart so they don't overlap.
+
+    Labels are pushed down to clear each other, then pulled back up as a group if
+    that would run them past the x-axis.
+    """
     ends = sorted(((frame.y(pts[-1][1]), i) for i, (_, _, _, pts) in enumerate(series)))
-    placed = {}
-    last = -1e9
-    for y, i in ends:
-        y = max(y, last + min_gap)
-        placed[i] = y
-        last = y
-    return placed
+    ys, last = [], -1e9
+    for y, _ in ends:
+        last = max(y, last + min_gap)
+        ys.append(last)
+    limit = frame.h - frame.b
+    for k in reversed(range(len(ys))):
+        ys[k] = min(ys[k], limit)
+        limit = ys[k] - min_gap
+    return {i: y for (_, i), y in zip(ends, ys)}
+
+
+def label_leader(frame, pts, label_y):
+    """Points for a short line in the series color from the last point to its label."""
+    ex, ey = frame.x(pts[-1][0]), frame.y(pts[-1][1])
+    return [(ex + 6, ey), (ex + 12, label_y), (ex + 22, label_y)], ex + 26
 
 
 # ---------------------------------------------------------------- SVG / HTML
@@ -146,8 +158,10 @@ def svg_chart(chart, idx):
                        f'fill="transparent"/><circle cx="{f.x(c):.1f}" cy="{f.y(v):.1f}" r="4" '
                        f'fill="{var}" stroke="var(--surface)" stroke-width="2"/>'
                        f'<title>{html.escape(tip)}</title></g>')
-        end_c, _ = pts[-1]
-        out.append(f'<text x="{f.x(end_c) + 10:.1f}" y="{labels[i] + 4:.1f}" class="lbl">'
+        leader, text_x = label_leader(f, pts, labels[i])
+        out.append(f'<polyline points="{" ".join(f"{x:.1f},{y:.1f}" for x, y in leader)}" '
+                   f'fill="none" stroke="{var}" stroke-width="2"/>')
+        out.append(f'<text x="{text_x:.1f}" y="{labels[i] + 4:.1f}" class="lbl">'
                    f'{html.escape(name)}</text>')
     out.append("</svg>")
     return "\n".join(out)
@@ -201,7 +215,7 @@ def render_html(rows, meta, rec=None, model=None):
         ".legend{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:13px;margin:4px 0 0}",
         ".legend span::before{content:'';display:inline-block;width:14px;height:3px;"
         "border-radius:2px;margin-right:6px;vertical-align:middle;background:var(--c)}",
-        "pre{background:var(--code);padding:12px;border-radius:6px;overflow:auto;font-size:13px}",
+        "pre{background:var(--code);padding:12px;border-radius:6px;overflow:auto;white-space:pre-wrap;font-size:13px}",
         "table{border-collapse:collapse;font-size:12.5px;width:100%;margin-top:6px}",
         "th,td{padding:4px 6px;border-bottom:1px solid var(--grid);text-align:right}",
         "th{color:var(--muted);font-weight:600}td:last-child,th:last-child{text-align:left}",
@@ -295,6 +309,8 @@ def render_png(rows, meta, path, scale=2):
                 d.ellipse([px - r - 2 * s, py - r - 2 * s, px + r + 2 * s, py + r + 2 * s],
                           fill=SURFACE)
                 d.ellipse([px - r, py - r, px + r, py + r], fill=color)
-            d.text(P(f.x(pts[-1][0]) + 10, labels[i] - 6), name, fill=INK, font=f_tick)
+            leader, text_x = label_leader(f, pts, labels[i])
+            d.line([P(x, y) for x, y in leader], fill=color, width=2 * s)
+            d.text(P(text_x, labels[i] - 6), name, fill=INK, font=f_tick)
     img.save(path, optimize=True)
     return path
