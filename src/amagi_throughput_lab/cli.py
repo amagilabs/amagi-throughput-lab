@@ -111,7 +111,7 @@ def build_parser():
     r.add_argument("--max-p95", type=float, default=None, help="max p95 wait in seconds")
     r.add_argument("--optimize", choices=["throughput", "energy"], default="throughput")
     r.add_argument("--model", default=None, help="model path to put in the printed commands")
-    r.add_argument("--nginx", action="store_true", help="also print an nginx upstream block")
+    r.add_argument("--nginx", action="store_true", help="also print an nginx upstream block (for picks with 2+ instances)")
     r.add_argument("--json", action="store_true", help="print the recommendation as JSON")
 
     rp = sub.add_parser("report", help="write report.html and report.png for a results dir")
@@ -207,9 +207,13 @@ def cmd_recommend(args):
         print(json.dumps(rec, indent=2))
     else:
         print(describe(rec, meta, model=args.model))
-        if args.nginx and rec["choice"] and (rec["choice"].get("instances") or 1) > 1:
-            print("\nnginx alternative to the built-in proxy:\n")
-            print(nginx_snippet(int(rec["choice"]["instances"])))
+        if args.nginx and rec["choice"]:
+            instances = int(rec["choice"].get("instances") or 1)
+            if instances > 1:
+                print("\nnginx alternative to the built-in proxy:\n")
+                print(nginx_snippet(instances))
+            else:
+                print("\n--nginx: the pick is a single server, so there is nothing to balance.")
     return 0 if rec["choice"] else 3
 
 

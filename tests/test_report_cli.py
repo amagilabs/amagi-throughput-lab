@@ -93,3 +93,12 @@ def test_end_labels_stay_apart_and_above_the_x_axis():
     ys = sorted(label_positions(series, frame).values())
     assert ys[-1] <= frame.h - frame.b
     assert all(b - a >= 13 - 1e-9 for a, b in zip(ys, ys[1:]))
+
+
+def test_nginx_flag_explains_a_single_server_pick(capsys):
+    from pathlib import Path
+
+    example = Path(__file__).resolve().parents[1] / "examples" / "rtx3090-qwen2.5-7b-q4km"
+    assert main(["recommend", str(example), "--users", "10", "--nginx"]) == 0
+    out = capsys.readouterr().out
+    assert "--parallel 16" in out and "nothing to balance" in out and "upstream" not in out

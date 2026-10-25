@@ -30,7 +30,7 @@ That starts llama-server once per layout (1 or 2 instances, each with 1, 4, 8 or
 ```bash
 amagi-throughput-lab recommend results/qwen7b-3090 --users 10 --min-user-tps 15
 amagi-throughput-lab recommend results/qwen7b-3090 --optimize energy     # most tok/J that still meets the target
-amagi-throughput-lab recommend results/qwen7b-3090 --nginx               # also print an nginx upstream block
+amagi-throughput-lab recommend results/qwen7b-3090 --nginx               # nginx upstream block, if the pick has 2+ instances
 amagi-throughput-lab report results/qwen7b-3090                          # redraw report.html + report.png
 amagi-throughput-lab prompts -n 5                                        # the prompts a sweep sends
 ```
