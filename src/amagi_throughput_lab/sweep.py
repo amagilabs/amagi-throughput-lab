@@ -61,6 +61,8 @@ class SweepConfig:
     power_cmd: object = "nvidia-smi"
     gpus: list = None
     max_temp_c: float = None
+    cool_to_c: float = None
+    cool_timeout_s: float = 600.0
     cell_pause_s: float = 0.0
     vllm_gpu_memory: float = 0.90
     attach: list = None
@@ -168,6 +170,7 @@ class Sweep:
             run_cell(urls, backend, ["warmup: say ok"], 8, 1, temperature=0.0,
                      request_timeout=cfg.request_timeout_s)
         for c in cfg.concurrency:
+            self.cool_down(sampler)
             if sampler is not None and cfg.max_temp_c is not None:
                 temp = sampler.latest_temp()
                 if temp is not None and temp >= cfg.max_temp_c:
@@ -200,6 +203,23 @@ class Sweep:
             if cfg.cell_pause_s:
                 time.sleep(cfg.cell_pause_s)
         return True
+
+    def cool_down(self, sampler):
+        """With --cool-to, start every cell from the same GPU temperature."""
+        cfg = self.cfg
+        if sampler is None or cfg.cool_to_c is None:
+            return
+        temp = sampler.latest_temp()
+        if temp is None or temp <= cfg.cool_to_c:
+            return
+        self.log(f"  cooling: GPU at {temp:.0f} C, waiting for {cfg.cool_to_c:.0f} C")
+        deadline = time.time() + cfg.cool_timeout_s
+        while time.time() < deadline:
+            time.sleep(1.0)
+            temp = sampler.latest_temp()
+            if temp is None or temp <= cfg.cool_to_c:
+                return
+        self.log(f"  cooling: still {temp:.0f} C after {cfg.cool_timeout_s:.0f}s, going on")
 
     def record(self, row):
         full = {k: row.get(k) for k in FIELDS}

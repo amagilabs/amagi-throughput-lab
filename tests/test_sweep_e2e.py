@@ -105,3 +105,20 @@ def test_cli_sweep_then_recommend_and_report(tmp_path, fake_cmd, capsys):
     assert main(["recommend", str(out), "--users", "4", "--json"]) == 0
     rec = json.loads(capsys.readouterr().out)
     assert rec["target_concurrency"] == 4
+
+
+def test_cool_to_waits_before_each_cell(tmp_path, fake_cmd):
+    smi = tmp_path / "cooling.py"
+    smi.write_text("import sys, time\n"
+                   "if any(a.startswith('--query-gpu=name') for a in sys.argv): sys.exit(0)\n"
+                   "t0 = time.time()\n"
+                   "while True:\n"
+                   "    temp = 75 if time.time() - t0 < 2.0 else 45\n"
+                   "    print(f'0, 250.0, {temp}, 8000', flush=True); time.sleep(0.05)\n",
+                   encoding="utf-8")
+    lines = []
+    c = cfg(tmp_path, fake_cmd, parallel=[4], concurrency=[1, 4],
+            power_cmd=[sys.executable, str(smi)], cool_to_c=50, cool_timeout_s=30)
+    rows, _ = Sweep(c, log=lines.append).run()
+    assert [r["status"] for r in rows] == ["ok", "ok"]
+    assert any("cooling: GPU at 75 C, waiting for 50 C" in line for line in lines)

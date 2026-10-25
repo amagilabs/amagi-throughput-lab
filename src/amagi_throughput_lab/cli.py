@@ -92,6 +92,10 @@ def build_parser():
                    help="GPU indexes to sum power over (default: all)")
     s.add_argument("--max-temp", type=float, default=None,
                    help="stop the sweep when the GPU reaches this temperature (C)")
+    s.add_argument("--cool-to", type=float, default=None, metavar="C",
+                   help="before each cell, wait until the GPU is back down to this temperature (C)")
+    s.add_argument("--cool-timeout", type=float, default=600.0,
+                   help="longest wait for --cool-to, in seconds")
     s.add_argument("--cell-pause", type=float, default=0.0, help="seconds to rest between cells")
     s.add_argument("--vllm-gpu-memory", type=float, default=0.90,
                    help="total --gpu-memory-utilization, split across vLLM instances")
@@ -156,7 +160,8 @@ def cmd_sweep(args):
         warmup=args.warmup, ready_timeout_s=args.ready_timeout,
         request_timeout_s=args.request_timeout,
         power_cmd=None if args.no_power else args.power_cmd, gpus=args.gpus,
-        max_temp_c=args.max_temp, cell_pause_s=args.cell_pause,
+        max_temp_c=args.max_temp, cool_to_c=args.cool_to, cool_timeout_s=args.cool_timeout,
+        cell_pause_s=args.cell_pause,
         vllm_gpu_memory=args.vllm_gpu_memory, attach=args.attach, out_dir=args.out)
     rows, meta = Sweep(cfg, log=lambda m: print(m, flush=True)).run()
     out = Path(args.out)
