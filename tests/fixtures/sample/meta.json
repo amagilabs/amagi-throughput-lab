@@ -1,0 +1,21 @@
+{
+  "tool": "amagi-throughput-lab",
+  "tool_version": "0.1.0",
+  "note": "hand-made test fixture, not a measurement",
+  "server_version": "version: test-fixture",
+  "simulated": false,
+  "gpus": [
+    "Test GPU"
+  ],
+  "power_sampled": true,
+  "stopped_early": "",
+  "config": {
+    "backend": "llamacpp",
+    "server_bin": "llama-server",
+    "model": "test-model.gguf",
+    "n_predict": 128,
+    "ctx_per_slot": 2048,
+    "prompt_mode": "distinct"
+  },
+  "server_args_full": "-ngl 99"
+}
