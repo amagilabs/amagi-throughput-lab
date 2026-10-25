@@ -61,7 +61,41 @@ amagi-throughput-lab sweep --server-bin "amagi-throughput-lab fake-server" -m fa
 
 ## A real run
 
-REAL_RUN_PLACEHOLDER
+One RTX 3090 at its 300 W limit, llama.cpp build 11753, Qwen2.5-7B-Instruct Q4_K_M fully on the GPU, 128 tokens per reply and 2,048 tokens of context per slot. The 48 cells took 25 minutes:
+
+```bash
+amagi-throughput-lab sweep --server-bin ~/gpu-suite-tools/llama.cpp/build/bin/llama-server \
+    -m ~/models/Qwen2.5-7B-Instruct-Q4_K_M.gguf --server-args "-ngl 99 -fa on" \
+    --instances 1,2 --parallel 1,4,8,16 --concurrency 1,2,4,8,10,16 \
+    --cool-to 52 --cool-timeout 180 --max-temp 83 -o results/qwen7b-3090
+```
+
+For 10 people it picked one llama-server with 16 slots:
+
+```
+$ amagi-throughput-lab recommend examples/rtx3090-qwen2.5-7b-q4km --users 10
+For 10 people at >= 10 tok/s each (tested at 10 requests in flight):
+  1 instance(s) x --parallel 16
+  total 662 tok/s, per person p50 66.4 / slowest-10% 65.9 tok/s, p95 wait 1.9s, 3.28 tok/J
+  same layout still meets the target at 16 requests in flight
+
+Run it with:
+  llama-server -m Qwen2.5-7B-Instruct-Q4_K_M.gguf --host 0.0.0.0 --port 8080 --parallel 16 --ctx-size 32768 -ngl 99 -fa on
+
+Also met the target:
+  1 instance(s) x --parallel 8: 407 tok/s, slowest-10% 32.2 tok/s, 1.72 tok/J
+  2 instance(s) x --parallel 8: 404 tok/s, slowest-10% 40.4 tok/s, 1.68 tok/J
+  2 instance(s) x --parallel 16: 402 tok/s, slowest-10% 40.1 tok/s, 1.64 tok/J
+```
+
+![Total tok/s, slowest-10% tok/s and tok/J for each layout on an RTX 3090](https://raw.githubusercontent.com/amagilabs/amagi-throughput-lab/master/examples/rtx3090-qwen2.5-7b-q4km/report.png)
+
+- One slot never got past about 140 tok/s, however many people were waiting. At 10 people the slowest 10% got 13 tok/s each, and 1 reply in 20 took 9.6 s or longer.
+- With 10 requests in flight, 16 slots gave 662 tok/s. Eight slots gave 407, and two servers with 8 slots each gave 404. At 8 in flight, 8 and 16 slots both gave 435. That is probably because llama.cpp's CUDA code uses one set of matrix kernels for batches of up to 8 sequences and another above that (`MMVQ_MAX_BATCH_SIZE 8` in `ggml/src/ggml-cuda/mmvq.cuh`), and on this card the bigger-batch kernels were faster per token. A server with 8 slots never batches more than 8, and two servers split the batch in half.
+- Tokens per joule climbed with throughput: 3.28 at 10 people and 3.99 at 16 for the 16-slot server, against 0.47 for a single slot.
+- The first attempt stopped after five cells. A separate watchdog read this card's memory chips at 106 C (nvidia-smi doesn't report GDDR6X temperature on GeForce cards), and the card is due for new thermal pads. The rerun waited for the core to cool to 52 C before each cell, about 20 s each time, and no cell ran longer than 32 s. Memory peaked at 104 C.
+
+The full results are in [examples/rtx3090-qwen2.5-7b-q4km](examples/rtx3090-qwen2.5-7b-q4km): `sweep.csv`, `meta.json`, `report.html` and `report.png`. Another card, model or set of prompts will give different numbers.
 
 ## What it does differently from llama-throughput-lab
 
