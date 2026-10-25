@@ -101,13 +101,14 @@ amagi-throughput-lab sweep [--backend llamacpp|vllm] [--server-bin CMD] [-m MODE
                            [--temperature T] [--allow-eos] [--warmup N]
                            [--ready-timeout S] [--request-timeout S]
                            [--power-cmd CMD] [--no-power] [--gpus 0,1] [--max-temp C]
-                           [--cell-pause S] [--vllm-gpu-memory F]
+                           [--cool-to C] [--cool-timeout S] [--cell-pause S] [--vllm-gpu-memory F]
                            [--users N] [--min-user-tps X] [-o DIR]
 ```
 
 - Lists are comma-separated: `--parallel 1,4,8,16`. `--batch default,512,2048` includes the server's own default.
 - `--prompts` takes a `.txt` file (one prompt per line) or `.jsonl` (`{"prompt": ...}` per line) when you'd rather test with your own office's requests. `--prompt-mode same` sends one prompt to every request, to reproduce upstream's numbers.
 - `--power-cmd "ssh gpu-box nvidia-smi"` reads power from another machine. `--gpus 0` sums only that GPU.
+- `--max-temp 83` stops the sweep when the GPU core reaches 83 C. `--cool-to 55` waits before each cell until the core is back down to 55 C, so every cell starts from about the same temperature. It waits at most `--cool-timeout` seconds (default 600). A 3090 holding a loaded llama-server sits at about 110 W and 56 C even with no requests, so pick a `--cool-to` above that idle point or every cell will wait out the full timeout.
 - `--vllm-gpu-memory` is the total `--gpu-memory-utilization`, split evenly across vLLM instances.
 - `recommend` takes `--users`, `--min-user-tps`, `--max-p95 S`, `--optimize throughput|energy`, `--model PATH` (for the printed command), `--nginx` and `--json`.
 - Exit codes: 0 ok, 2 usage error, 3 the run failed (no cell succeeded, no layout met the target, or no results file).
