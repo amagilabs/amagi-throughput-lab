@@ -170,7 +170,8 @@ def cmd_sweep(args):
         print("no cell succeeded; see the logs folder and the note column", file=sys.stderr)
         return 3
     rec = recommend(rows, users=args.users, min_user_tps=args.min_user_tps)
-    write_reports(rows, meta, rec, out, model=args.model or None, png=True)
+    # report.html gets shared, so its command uses the model file name from meta, not the path.
+    write_reports(rows, meta, rec, out, png=True)
     print()
     print(describe(rec, meta, model=args.model or None))
     return 0

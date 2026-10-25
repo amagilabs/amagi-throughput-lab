@@ -95,13 +95,18 @@ def test_max_temp_stops_the_sweep(tmp_path, fake_cmd):
 def test_cli_sweep_then_recommend_and_report(tmp_path, fake_cmd, capsys):
     out = tmp_path / "cli"
     server = " ".join(f'"{p}"' if " " in p else p for p in fake_cmd)
-    code = main(["sweep", "--server-bin", server, "--model", "fake.gguf", "--parallel", "1,4",
+    model = str(tmp_path / "private_models" / "fake.gguf")
+    code = main(["sweep", "--server-bin", server, "--model", model, "--parallel", "1,4",
                  "--concurrency", "1,4,10", "--n-predict", "16", "--no-power", "--warmup", "1",
                  "--rounds", "1", "-o", str(out)])
     text = capsys.readouterr().out
     assert code == 0, text
     assert "For 10 people" in text and "Run it with:" in text
     assert (out / "report.html").exists() and (out / "report.png").exists()
+    # The terminal command keeps the full path; the shareable report only has the file name.
+    assert "private_models" in text
+    report = (out / "report.html").read_text(encoding="utf-8")
+    assert "private_models" not in report and "-m fake.gguf" in report
     assert main(["recommend", str(out), "--users", "4", "--json"]) == 0
     rec = json.loads(capsys.readouterr().out)
     assert rec["target_concurrency"] == 4

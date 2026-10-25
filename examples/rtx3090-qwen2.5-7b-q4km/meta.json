@@ -1,0 +1,66 @@
+{
+  "tool": "amagi-throughput-lab",
+  "tool_version": "0.1.0",
+  "started": "2026-10-25T07:31:12+0000",
+  "finished": "2026-10-25T07:56:28+0000",
+  "server_version": "version: 0.7.0-dev (build 11753, commit d8d92973c)",
+  "simulated": false,
+  "gpus": [
+    "NVIDIA GeForce RTX 3090"
+  ],
+  "power_sampled": true,
+  "python": "3.12.3",
+  "os": "Linux",
+  "stopped_early": "",
+  "config": {
+    "backend": "llamacpp",
+    "server_bin": "llama-server",
+    "model": "Qwen2.5-7B-Instruct-Q4_K_M.gguf",
+    "host": "127.0.0.1",
+    "base_port": null,
+    "instances": [
+      1,
+      2
+    ],
+    "parallel": [
+      1,
+      4,
+      8,
+      16
+    ],
+    "batch": [
+      null
+    ],
+    "ubatch": [
+      null
+    ],
+    "concurrency": [
+      1,
+      2,
+      4,
+      8,
+      10,
+      16
+    ],
+    "n_predict": 128,
+    "ctx_per_slot": 2048,
+    "server_args": "-ngl 99 -fa on",
+    "balancer": "proxy",
+    "rounds": 2,
+    "prompt_mode": "distinct",
+    "temperature": 0.3,
+    "ignore_eos": true,
+    "warmup": 2,
+    "ready_timeout_s": 600.0,
+    "request_timeout_s": 600.0,
+    "power_cmd": true,
+    "gpus": null,
+    "max_temp_c": 83.0,
+    "cool_to_c": 52.0,
+    "cool_timeout_s": 180.0,
+    "cell_pause_s": 0.0,
+    "vllm_gpu_memory": 0.9,
+    "attach": null
+  },
+  "server_args_full": "-ngl 99 -fa on"
+}
