@@ -32,7 +32,10 @@ def opt_int_list(text):
     """Like int_list, but 'default' (or empty) means leave the server's own value."""
     if text.strip().lower() in ("", "default"):
         return [None]
-    return int_list(text)
+    parts = [part.strip() for part in text.split(",") if part.strip()]
+    values = [None if part.lower() == "default" else part for part in parts]
+    numbers = int_list(",".join(v for v in values if v is not None)) if any(values) else []
+    return [None] * (None in values) + numbers
 
 
 def listen_addr(text):
@@ -116,7 +119,8 @@ def build_parser():
     rp.add_argument("-o", "--out", default=None, help="output dir (default: the results dir)")
 
     px = sub.add_parser("proxy", help="round-robin HTTP proxy over several servers (no nginx)")
-    px.add_argument("--listen", type=listen_addr, default=("127.0.0.1", 8080))
+    px.add_argument("--listen", type=listen_addr, default=("127.0.0.1", 8080), metavar="HOST:PORT",
+                    help="address to serve on (default 127.0.0.1:8080)")
     px.add_argument("--upstream", action="append", required=True, metavar="HOST:PORT")
     px.add_argument("--strategy", choices=["round-robin", "least-busy"], default="least-busy")
     px.add_argument("--timeout", type=float, default=600.0)

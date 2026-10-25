@@ -69,6 +69,7 @@ def test_multi_instance_commands_add_the_proxy():
     lines = serve_commands(row(2, 4, 10, 1, 1), META, model="/models/q.gguf")
     assert len(lines) == 3
     assert "--port 8081" in lines[0] and "--port 8082" in lines[1]
+    assert all("--host 127.0.0.1" in line for line in lines[:2])  # only the proxy is exposed
     assert lines[2] == ("amagi-throughput-lab proxy --listen 0.0.0.0:8080 "
                         "--upstream 127.0.0.1:8081 --upstream 127.0.0.1:8082")
     assert "upstream llama_backend" in nginx_snippet(2)

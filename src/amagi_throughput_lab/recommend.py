@@ -92,11 +92,13 @@ def serve_commands(choice, meta, model=None, host="0.0.0.0", base_port=8081, pro
     extra = strip_flags(extra, OVERRIDDEN_FLAGS)
     ctx = cfg.get("ctx_per_slot")
     single = instances == 1
+    # Behind the proxy, the instances only need to be reachable from this machine.
+    bind = host if single else "127.0.0.1"
     lines = []
     for i in range(instances):
         port = proxy_port if single else base_port + i
         if backend == "vllm":
-            cmd = [server_bin or "vllm", "serve", model, "--host", host, "--port", str(port)]
+            cmd = [server_bin or "vllm", "serve", model, "--host", bind, "--port", str(port)]
             if parallel:
                 cmd += ["--max-num-seqs", str(parallel)]
             gpu_mem = cfg.get("vllm_gpu_memory")
@@ -105,7 +107,7 @@ def serve_commands(choice, meta, model=None, host="0.0.0.0", base_port=8081, pro
             if ctx:
                 cmd += ["--max-model-len", str(ctx)]
         else:
-            cmd = [server_bin or "llama-server", "-m", model, "--host", host, "--port", str(port)]
+            cmd = [server_bin or "llama-server", "-m", model, "--host", bind, "--port", str(port)]
             if parallel:
                 cmd += ["--parallel", str(parallel)]
                 if ctx and user_ctx is None:

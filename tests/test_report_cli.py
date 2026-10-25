@@ -2,7 +2,7 @@ import shutil
 
 from PIL import Image
 
-from amagi_throughput_lab.cli import build_parser, int_list, main
+from amagi_throughput_lab.cli import build_parser, int_list, main, opt_int_list
 from amagi_throughput_lab.recommend import recommend
 from amagi_throughput_lab.report import MAX_SERIES, build_charts, render_html, render_png
 from amagi_throughput_lab.sweep import load_results
@@ -76,3 +76,9 @@ def test_prompts_command(capsys):
     assert main(["prompts", "-n", "3"]) == 0
     lines = capsys.readouterr().out.strip().splitlines()
     assert len(lines) == 3 and len(set(lines)) == 3
+
+
+def test_batch_lists_can_mix_the_server_default_with_numbers():
+    assert opt_int_list("default") == [None]
+    assert opt_int_list("default,512,2048") == [None, 512, 2048]
+    assert opt_int_list("512,1024") == [512, 1024]
