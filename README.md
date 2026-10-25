@@ -123,7 +123,7 @@ This repo ships a skill at `.claude/skills/amagi-throughput-lab/SKILL.md`. Copy 
 
 ## Limits
 
-- VLLM_LIMIT_PLACEHOLDER
+- The vLLM backend is tested against the built-in fake server only. It has not been run against a real vLLM server yet.
 - Power and temperature need an NVIDIA GPU and `nvidia-smi`. On other GPUs, use `--no-power` and the speed numbers still work.
 - Board power only. The CPU, RAM and the rest of the PC aren't counted, so tok/J flatters every layout by the same amount.
 - One generation length per sweep. Long chats and long documents shift the answer toward fewer slots with more context each, so sweep with your real `--n-predict` and `--prompts` when you can.
