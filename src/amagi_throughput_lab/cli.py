@@ -55,12 +55,12 @@ def build_parser():
     s.add_argument("--server-bin", default=None,
                    help="server command (default: llama-server, or vllm for --backend vllm)")
     s.add_argument("--model", "-m", default="", help="GGUF path (llama.cpp) or model id (vLLM)")
-    s.add_argument("--instances", type=int_list, default=[1], help="e.g. 1,2 (default 1)")
-    s.add_argument("--parallel", "-np", type=int_list, default=[1, 4, 8],
+    s.add_argument("--instances", type=int_list, metavar="LIST", default=[1], help="e.g. 1,2 (default 1)")
+    s.add_argument("--parallel", "-np", type=int_list, metavar="LIST", default=[1, 4, 8],
                    help="slots per instance (vLLM: --max-num-seqs), e.g. 1,4,8")
-    s.add_argument("--batch", type=opt_int_list, default=[None], help="--batch-size values")
-    s.add_argument("--ubatch", type=opt_int_list, default=[None], help="--ubatch-size values")
-    s.add_argument("--concurrency", "-c", type=int_list, default=[1, 2, 4, 8, 16],
+    s.add_argument("--batch", type=opt_int_list, metavar="LIST", default=[None], help="--batch-size values")
+    s.add_argument("--ubatch", type=opt_int_list, metavar="LIST", default=[None], help="--ubatch-size values")
+    s.add_argument("--concurrency", "-c", type=int_list, metavar="LIST", default=[1, 2, 4, 8, 16],
                    help="requests in flight, e.g. 1,2,4,8,10,16")
     s.add_argument("--n-predict", type=int, default=128, help="new tokens per request")
     s.add_argument("--ctx-per-slot", type=int, default=2048,
