@@ -78,7 +78,8 @@ as real measurements.
 - A fixed `--base-port` that is already in use is an error, not a silent reuse; by default free
   ports are picked.
 - `--cool-to C` waits before each cell until the GPU core is back to C (at most `--cool-timeout`
-  seconds). A card holding a loaded model idles warm (a 3090 with llama-server loaded sits near
-  110 W / 56 C), so set it a few degrees above that idle point. On cards whose memory runs hot,
+  seconds). Set it a few degrees above the card's real idle temperature, or every cell waits out
+  the timeout. A 3090 with llama-server loaded holds ~110 W for ~15 s after a cell, then drops to
+  ~25 W; `--cool-to 52` cost about 20 s per cell there. On cards whose memory runs hot,
   keep cells short (`--rounds 2`, concurrency up to 16) and watch VRAM temperature separately;
   nvidia-smi does not report GDDR6X junction temperature on GeForce cards.
