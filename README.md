@@ -53,7 +53,7 @@ Run two or more instances behind one port without nginx. This also works on Wind
 amagi-throughput-lab proxy --listen 0.0.0.0:8080 --upstream 127.0.0.1:8081 --upstream 127.0.0.1:8082
 ```
 
-No GPU handy? The built-in fake server lets you try the whole flow. Its numbers are made up, and every report it feeds is stamped SIMULATED:
+To try the whole flow without a GPU, point it at the built-in fake server. Its numbers are made up, and every report it feeds is stamped SIMULATED:
 
 ```bash
 amagi-throughput-lab sweep --server-bin "amagi-throughput-lab fake-server" -m fake.gguf --no-power -o results/demo
@@ -67,27 +67,27 @@ REAL_RUN_PLACEHOLDER
 
 Alex Ziskind's [llama-throughput-lab](https://github.com/alexziskind1/llama-throughput-lab) is a dialog-menu launcher with unittest-based sweeps and an nginx round-robin setup. This tool keeps its approach (launch llama-server per configuration, size `--ctx-size` per slot, sweep `--parallel`, batch and concurrency) and changes these things:
 
-- **A different prompt on every request.** Upstream sent the same prompt every time (his open issue #15), which a prefix cache can answer early. Here the prompts are 320 distinct office-style requests, each tagged with the run, cell and request number, and llama.cpp's prompt cache is off.
-- **Tokens per joule.** `nvidia-smi` power is sampled every 200 ms during each cell and integrated, so every row gets energy, average watts and tok/J. `--max-temp` stops the sweep if the GPU gets too hot.
-- **Charts.** `report.html` has three charts (total tok/s, slowest-10% tok/s per person, tok/J against concurrency) plus the full table, in light and dark mode. `report.png` is the same three charts in one image.
-- **vLLM backend** through its OpenAI-compatible `/v1/completions`.
-- **No nginx needed.** Multiple instances go through a small built-in Python proxy (least-busy or round-robin), so multi-instance layouts work on Windows and on machines without nginx. `--balancer client` spreads requests from the client instead.
-- **A recommendation.** It picks the layout for N people and prints the exact llama-server command (plus the proxy line for multi-instance layouts).
-- **No port race (his issue #18).** Upstream sent server output to /dev/null and polled `/health` without checking its own process. A stale server on the same port could answer and get measured instead. Here a fixed `--base-port` that is already in use is an error, free ports are picked by default, server output goes to `logs/`, and a server that dies while loading fails right away with the end of its log in the error.
+- A different prompt on every request. Upstream sent the same prompt every time (his open issue #15), which a prefix cache can answer early. Here the prompts are 320 distinct office-style requests, each tagged with the run, cell and request number, and llama.cpp's prompt cache is off.
+- Tokens per joule: `nvidia-smi` power is sampled every 200 ms during each cell and integrated, so every row gets energy, average watts and tok/J. `--max-temp` stops the sweep if the GPU gets too hot.
+- `report.html` has three charts (total tok/s, slowest-10% tok/s per person, tok/J against concurrency) plus the full table, in light and dark mode. `report.png` is the same three charts in one image.
+- A vLLM backend, through its OpenAI-compatible `/v1/completions`.
+- Multiple instances go through a small built-in Python proxy (least-busy or round-robin), so multi-instance layouts work on Windows and on machines without nginx. `--balancer client` spreads requests from the client instead.
+- It picks the layout for N people and prints the exact llama-server command (plus the proxy line for multi-instance layouts).
+- The port race from his issue #18 is gone. Upstream sent server output to /dev/null and polled `/health` without checking its own process. A stale server on the same port could answer and get measured instead. Here a fixed `--base-port` that is already in use is an error, free ports are picked by default, server output goes to `logs/`, and a server that dies while loading fails right away with the end of its log in the error.
 
 Dropped from upstream: the `dialog` menu and the CPU threads sweep.
 
 ## How it measures
 
-- **A cell** is one layout (instances, `--parallel`, `--batch-size`, `--ubatch-size`) at one concurrency. It sends concurrency x `--rounds` requests (default 2 rounds), with exactly `concurrency` in flight at any moment.
-- **Every request generates the same number of tokens.** `--n-predict` (default 128) with `ignore_eos`, so cells compare fairly. `--allow-eos` turns that off.
-- **`throughput_tps`** is all generated tokens in the cell over the cell's wall time.
-- **Per-person tok/s** is one request's generated tokens over its whole wait, including queueing and prompt processing. `user_tps_p50` is the median request. `user_tps_p10` is what the slowest 10% of requests got, and it's the number the recommendation checks against `--min-user-tps`.
-- **`latency_p95_s`** is the 95th percentile time from sending a request to getting the full reply.
-- **`tok_per_j`** is generated tokens over GPU board energy for the cell. Board power only, not the whole PC.
-- **Context.** `--ctx-size` is set to `--ctx-per-slot` (default 2048) x `--parallel`, so every slot gets the same context. A `-c` in `--server-args` overrides it.
-- **The recommendation** looks at the smallest tested concurrency that is at least `--users`, keeps the layouts where the slowest 10% still got `--min-user-tps` with no errors, and picks the one with the most total tok/s (or tok/J with `--optimize energy`). When two layouts are within 3%, it takes the one with fewer instances, then fewer slots, because those use less VRAM.
-- **A server that can't start**, usually from running out of VRAM, becomes a `start_failed` row with the reason in `note`. The sweep moves on to the next layout.
+- A cell is one layout (instances, `--parallel`, `--batch-size`, `--ubatch-size`) at one concurrency. It sends concurrency x `--rounds` requests (default 2 rounds), keeping `concurrency` of them in flight until the last ones finish.
+- Every request generates the same number of tokens: `--n-predict` (default 128) with `ignore_eos`, so cells compare fairly. `--allow-eos` turns that off.
+- `throughput_tps` is all generated tokens in the cell over the cell's wall time.
+- Per-person tok/s is one request's generated tokens over its whole wait, including queueing and prompt processing. `user_tps_p50` is the median request. `user_tps_p10` is what the slowest 10% of requests got, and it's the number the recommendation checks against `--min-user-tps`.
+- `latency_p95_s` is the 95th percentile time from sending a request to getting the full reply.
+- `tok_per_j` is generated tokens over GPU board energy for the cell. Board power only, not the whole PC.
+- `--ctx-size` is set to `--ctx-per-slot` (default 2048) x `--parallel`, so every slot gets the same context. A `-c` in `--server-args` overrides it.
+- The recommendation looks at the smallest tested concurrency that is at least `--users`, keeps the layouts where the slowest 10% still got `--min-user-tps` with no errors, and picks the one with the most total tok/s (or tok/J with `--optimize energy`). When two layouts are within 3%, it takes the one with fewer instances, then fewer slots, because those use less VRAM.
+- A server that can't start, usually from running out of VRAM, becomes a `start_failed` row with the reason in `note`. The sweep moves on to the next layout.
 
 ## Options
 
